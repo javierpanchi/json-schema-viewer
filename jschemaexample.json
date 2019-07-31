@@ -1,0 +1,103 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"id": "schema.json#",
+	"title": "DataFabric Example",
+	"description": "Simple Example to display information",
+	"version": "1.1.3",
+	"type": "object",
+	"properties": {
+	  "locationId": { 
+		"type": "string"
+	  },
+  
+	  "geometry": {
+		"type": "object",
+		"$comment": "Location specified as a point or line",
+		"properties": {
+		  "type": {
+			"enum": [
+			  "Point", "Line"
+			],
+			"default": "Point"
+		  },
+		  "startPoint": {
+			"type": "array",
+			"items": {
+			  "type": "number"
+			},
+			"minItems": 2,
+			"maxItems": 2
+		  },
+		  "endPoint": {
+			"type": "array",
+			"items": {
+			  "type": "number"
+			},
+			"minItems": 2,
+			"maxItems": 2
+		  }
+		},
+		"required": ["type", "startPoint"],
+		"additionalProperties": false
+	  },
+  
+	  "address": {
+		"type": "object",
+		"$comment": "Location specified as a street/postal address",
+		"properties": { 
+		  "country": {
+			"type": "string",
+			"maxLength": 50
+		  },
+		  "postcode": {
+			"type": "string",
+			"maxLength": 10
+		  },
+		  "state": {
+			"type": "string",
+			"maxLength": 50
+		  },
+		  "city": {
+			"type": "string",
+			"maxLength": 50
+		  },
+		  "addressLine1": {
+			"type": "string",
+			"maxLength": 100
+		  },
+		  "addressLine2": {
+			"type": "string",
+			"maxLength": 100
+		  }
+		}
+	  },
+  
+	  "userDefined": {
+		"$comment": "Location specified as any user defined text",
+		"type": "array",
+		"items": {
+		  "type": "string",
+		  "minItems": 1
+		}
+	  },
+  
+	  "solutionAttributes": { 
+		"type": "array",
+		"default": [],
+		"items": {
+		  "$ref": "http://localhost:5555/workordersjsonschema"
+		}
+	  },
+  
+	  "customerAttributes": {
+		"type": "array",
+		"default": [],
+		"items": {
+			
+		}
+	  }
+  
+	},
+	"required": ["locationId"],
+	"anyOf": [{"required": ["geometry"]},{"required": ["address"]},{"required": ["userDefined"]}]
+  }
