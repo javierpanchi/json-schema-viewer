@@ -2,7 +2,6 @@
 if (!window.location.origin) {
   window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
 }
-
 if (typeof JSV === 'undefined') {
     /**
      * JSV namespace for JSON Schema Viewer.
@@ -101,6 +100,7 @@ if (typeof JSV === 'undefined') {
          */
 
         init: function(config, callback) {
+            console.log('aaaaaaa2');
             var i;
             //apply config
             for (i in config) {
@@ -465,8 +465,7 @@ if (typeof JSV === 'undefined') {
             } else {
                 $('#info-translation').html('No translations available.');
             }
-
-
+            console.log('aaaaaaa1');
             JSV.createPre(schema, tv4.getSchema(node.schema), false, node.plainName);
 
             var example = (!node.example && node.parent && node.parent.example && node.parent.type === 'object' ? node.parent.example : node.example);
@@ -1244,7 +1243,7 @@ if (typeof JSV === 'undefined') {
          */
         createDiagram: function(callback) {
             tv4.asyncLoad([JSV.schema], function() {
-
+                console.log(JSV.schema);
                 JSV.compileData(tv4.getSchema(JSV.schema),false,'schema');
 
                 // Calculate total nodes, max label length

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>JSON Schema Viewer <!-- @echo version --></title>
+        <title>JSON Schema ViewerFFFFF <!-- @echo version --></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             html, #jsv-tree {
@@ -178,12 +178,12 @@
         <!-- @endif -->
         <script type='text/javascript'>
           (function($) {
-
+            alert('...a1');
             var loc = window.location,
             //if not already set, set the root schema location
             //this allows dev ENV to override the schema location
                 schema = JSV.schema ? JSV.schema : loc.origin + loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1) + 'schemas/schema/schema.json';
-
+            
             JSV.init({
               schema : schema,
               plain : true, //don't use JQM
